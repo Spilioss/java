@@ -1,0 +1,9 @@
+public class CriticUser extends User {
+    public CriticUser(String username) {
+        super(username);
+    }
+    public void addReview(Review r) {
+        super.addReview(r);
+        System.out.println("Critic bonus: review by " + username + " recorded.");
+    }
+}
