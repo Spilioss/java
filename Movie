@@ -45,6 +45,10 @@ public class Movie implements Printable {
  
     // Getters and other utility methods can be added here 
 
+    public int getYear() {
+        return year;
+    }
+
     public List<String> getGenres() {
       return genres;
     }
