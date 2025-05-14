@@ -73,7 +73,7 @@ public class Main {
 
         // Αναζήτηση βάσει είδους
         System.out.println("--- Search by Genre: Sci-Fi ---");
-        List<Movie> sciFiMovies = MovieSearch.searchByGenre(movies, "Sci-Fi");
+        List<Movie> sciFiMovies = Movie.MovieSearch.searchByGenre(movies, "Sci-Fi");
         for (Movie m : sciFiMovies) {
             m.printDetails();
             System.out.println();
