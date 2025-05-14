@@ -5,7 +5,7 @@ public class User implements Printable {
 
     public User(String username) {
         this.username = username;
-        this.reviews = new ArrayList<String>();
+        this.reviews = new ArrayList<Review>();
     }
 
     public void addReview(Review r) {
