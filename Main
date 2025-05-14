@@ -1,42 +1,82 @@
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Δημιουργία ταινιών
-        Movie m1 = new Movie("Inception", 2010, List.of("Sci-Fi", "Thriller"), "Christopher Nolan");
+        // Χρήστες
+        User u1 = new User("alice");
+        User u2 = new User("bob");
+
+        // Ταινίες
+        Movie m1 = new Movie("Inception", 2010, List.of("Sci-Fi", "Action"), "Christopher Nolan");
         Movie m2 = new Movie("The Matrix", 1999, List.of("Sci-Fi", "Action"), "Wachowski Sisters");
+        Movie m3 = new Movie("Titanic", 1997, List.of("Romance", "Drama"), "James Cameron");
 
-        // Δημιουργία χρηστών
-        User u1 = new User("Bob");
-        User u2 = new VerifiedUser("Alice");
-        User u3 = new CriticUser("Charlie");
+        // Κριτικές
+        Review r1 = new BasicReview(u1, 9, "Mind-blowing!", m1);
+        Review r2 = new VerifiedReview(u2, 10, "Masterpiece!", m1);
+        Review r3 = new BasicReview(u1, 8, "Iconic!", m2);
+        Review r4 = new VerifiedReview(u2, 9, "Brilliant!", m2);
+        Review r5 = new BasicReview(u1, 7, "Emotional.", m3);
 
-        // Καταχώρηση κριτικών
-        Review r1 = new BasicReview(u1, 8, "Great visuals!", m1);
-        u1.addReview(r1);
-        m1.addReview(r1);
+        // Συσχέτιση reviews με ταινίες και χρήστες
+        m1.addReview(r1); u1.addReview(r1);
+        m1.addReview(r2); u2.addReview(r2);
+        m2.addReview(r3); u1.addReview(r3);
+        m2.addReview(r4); u2.addReview(r4);
+        m3.addReview(r5); u1.addReview(r5);
 
-        Review r2 = new VerifiedReview(u2, 9, "Mind-blowing plot.", m1);
-        u2.addReview(r2);
-        m1.addReview(r2);
-
-        Review r3 = new BasicReview(u3, 7, "Intriguing but complex.", m2);
-        u3.addReview(r3);
-        m2.addReview(r3);
-
-        // Εμφάνιση λεπτομερειών
-        System.out.println("==== Movies ====");
+        // Εκτύπωση στοιχείων
+        System.out.println("--- Movie Details ---");
         m1.printDetails();
+        System.out.println();
         m2.printDetails();
+        System.out.println();
+        m3.printDetails();
+        System.out.println();
 
-        System.out.println("==== Reviews ====");
-        r1.printDetails();
-        r2.printDetails();
-        r3.printDetails();
-
-        System.out.println("==== Users ====");
+        System.out.println("--- User Details ---");
         u1.printDetails();
+        System.out.println();
         u2.printDetails();
-        u3.printDetails();
+        System.out.println();
+
+        System.out.println("--- Review Details ---");
+        r1.printDetails();
+        System.out.println();
+        r2.printDetails();
+        System.out.println();
+        r3.printDetails();
+        System.out.println();
+        r4.printDetails();
+        System.out.println();
+        r5.printDetails();
+        System.out.println();
+
+        // Ταξινόμηση βάσει μέσης βαθμολογίας
+        List<Movie> movies = List.of(m1, m2, m3);
+        List<Movie> sortedByRating = new ArrayList<>(movies);
+        Collections.sort(sortedByRating, new MovieRatingComparator());
+        System.out.println("--- Sorted by Average Rating ---");
+        for (Movie m : sortedByRating) {
+            m.printDetails();
+            System.out.println();
+        }
+
+        // Ταξινόμηση βάσει έτους
+        List<Movie> sortedByYear = new ArrayList<>(movies);
+        Collections.sort(sortedByYear, new MovieYearComparator());
+        System.out.println("--- Sorted by Year ---");
+        for (Movie m : sortedByYear) {
+            m.printDetails();
+            System.out.println();
+        }
+
+        // Αναζήτηση βάσει είδους
+        System.out.println("--- Search by Genre: Sci-Fi ---");
+        List<Movie> sciFiMovies = MovieSearch.searchByGenre(movies, "Sci-Fi");
+        for (Movie m : sciFiMovies) {
+            m.printDetails();
+            System.out.println();
+        }
     }
 }
