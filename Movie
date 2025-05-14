@@ -68,7 +68,7 @@ public class Movie implements Printable {
     //method for searching movies based on genre 
     //it returns a new list containing only the movies that include this genre
 
-    public class MovieSearch {
+    public static class MovieSearch {
         public static List<Movie> searchByGenre(List<Movie> movies, String genre) {
             List<Movie> result = new ArrayList<>();
             for (Movie m : movies) {
