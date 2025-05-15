@@ -49,13 +49,18 @@ public class Movie implements Printable {
       return genres;
     }
 
+     public String getDirector() {
+      return director;
+    }
+
+
     public String getTitle() {
         return title;
     }
 
     public int getYear() {
-    return year;
-}
+        return year;
+    }
 
     //method for sorting movies based on their average rating
 
@@ -83,11 +88,15 @@ public class Movie implements Printable {
     public double correlationScore(Movie other) {
         double score = 0;
 
-    for (String g : this.genres) {
-      if (other.getGenres().contains(g)) {
-        score += 2;
-      }
+        if (this.director.equalsIgnoreCase(other.getDirector())) {
+            score += 5;
+        }
+
+        for (String g : this.genres) {
+        if (other.getGenres().contains(g)) {
+            score += 2;
+            }
+        }
+        return score;    
     }
-    return score;    
-    } 
 } 
