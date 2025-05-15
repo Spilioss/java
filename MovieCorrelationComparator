@@ -1,0 +1,13 @@
+import java.util.Comparator;
+
+public class MovieCorrelationComparator implements Comparator<Movie> {
+    private final Movie reference;
+    public MovieCorrelationComparator(Movie reference) {
+        this.reference = reference;
+    }
+    public int compare(Movie m1, Movie m2) {
+        double score1 = reference.correlationScore(m1);
+        double score2 = reference.correlationScore(m2);
+        return Double.compare(score2, score1);
+    }
+}
