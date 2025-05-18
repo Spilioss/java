@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class MovieUtils {
+    public static void getTopMoviesByGenre(List<Movie> movies, int minReviews, double minAverageRating) {
+        Map<String, List<Movie>> genreMap = new HashMap<>();
+
+        for (Movie movie : movies) {
+            if (movie.getAverageRating() > minAverageRating && movie.getReviewCount() >= minReviews) {
+                for (String genre : movie.getGenres()) {
+                    genreMap.putIfAbsent(genre, new ArrayList<>());
+                    genreMap.get(genre).add(movie);
+                }
+            }
+        }
+
+        for (String genre : genreMap.keySet()) {
+            List<Movie> genreMovies = genreMap.get(genre);
+            genreMovies.sort(new MovieRatingComparator());
+
+            System.out.println("--- Top Movies in Genre: " + genre + " ---");
+            for (Movie m : genreMovies) {
+                m.printDetails();
+                System.out.println();
+            }
+        }
+    }
+}
