@@ -50,8 +50,8 @@ public class Movie implements Printable {
     }
 
      public String getDirector() {
-      return director;
-    }
+       return director;
+     }
 
 
     public String getTitle() {
@@ -98,5 +98,9 @@ public class Movie implements Printable {
             }
         }
         return score;    
+    }
+
+    public int getReviewCount() {
+       return reviews.size();
     }
 } 
