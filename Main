@@ -88,6 +88,10 @@ public class Main {
             System.out.println();
         }
 
+        
+        System.out.println("--- Top Movies by Genre with minReviews=2 and minAvgRating=8.5 ---");
+        MovieUtils.getTopMoviesByGenre(movies, 2, 8.5);
+
         //Συσχέτιση ταινιών
           Movie reference = m1;
           List<Movie> candidates = new ArrayList<>(movies);
