@@ -27,7 +27,7 @@ public class Main {
         m2.addReview(r3); u1.addReview(r3);
         m2.addReview(r4); u2.addReview(r4);
         m3.addReview(r5); u1.addReview(r5);
-        m4.addReview(r6); u2.addReview(r5);
+        m4.addReview(r6); u2.addReview(r6);
 
         // Εκτύπωση στοιχείων
         System.out.println("--- Movie Details ---");
